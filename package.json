@@ -1,13 +1,13 @@
 {
   "name": "npm-restflow",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "bin/npm-restflow.js",
   "bin": {
     "restflow": "bin/npm-restflow.js"
   },
   "scripts": {
-    "build": "browserify bin/npm-restflow.js --bare  > dist/npm-restflow.js"
+    "build": "browserify bin/npm-restflow.js --bare -o dist/npm-restflow.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,9 @@
   "homepage": "https://github.com/fredybawa/npm-restflow#readme",
   "devDependencies": {
     "browserify": "^13.1.0"
+  },
+  "dependencies": {
+    "app-root-dir": "^1.0.2",
+    "commander": "^2.9.0"
   }
 }
