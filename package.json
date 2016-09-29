@@ -7,6 +7,7 @@
     "restflow": "bin/npm-restflow.js"
   },
   "scripts": {
+    "build": "browserify bin/npm-restflow.js --bare  > dist/npm-restflow.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/fredybawa/npm-restflow/issues"
   },
-  "homepage": "https://github.com/fredybawa/npm-restflow#readme"
+  "homepage": "https://github.com/fredybawa/npm-restflow#readme",
+  "devDependencies": {
+    "browserify": "^13.1.0"
+  }
 }
