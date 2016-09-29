@@ -8,33 +8,34 @@ var child, configPath;
 
 var restFlowCommand = '/usr/bin/java -jar ' + path.resolve(__dirname, '../lib/restflow.jar');
 
-
 program
   .version('0.0.1')
-  .option('-c, --config', 'Path to the config folder')
+   .usage('[options] <DIR>')
+  .option('-c, --config <path>', 'Path to the config folder', handlePathConfiguration)
   .parse(process.argv);
 
 
-if (process.config) {
-  configPath = appRoot + path;
+function handlePathConfiguration(directory) {
+  console.log(typeof directory);
+
+  configPath = appRoot + '/' + directory;
   restFlowCommand +=  ' -config ' + configPath;
 
-
-  console.log('Resolve Path',  path.resolve(path) );
+  console.log('Resolve Path',  path.resolve(directory) );
   console.log('Path config', configPath);
   console.log('Final Command', restFlowCommand);
+
+  child = exec(restFlowCommand,
+    function (error, stdout, stderr){
+      console.log('stdout: ' + stdout);
+      console.log('stderr: ' + stderr);
+
+      if(error !== null){
+        console.log('exec error: ' + error);
+      }
+  });
+
 }
-
-
-child = exec(restFlowCommand,
-  function (error, stdout, stderr){
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if(error !== null){
-      console.log('exec error: ' + error);
-    }
-});
-
 
 
 
