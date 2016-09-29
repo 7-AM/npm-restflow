@@ -19,7 +19,7 @@ function handlePathConfiguration(directory) {
   console.log(typeof directory);
 
   configPath = appRoot + '/' + directory;
-  restFlowCommand +=  ' -config ' + configPath;
+  restFlowCommand +=  ' -config ' + path.resolve(directory) ;
 
   console.log('Resolve Path',  path.resolve(directory) );
   console.log('Path config', configPath);
