@@ -1,0 +1,24 @@
+{
+  "name": "npm-restflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fredybawa/npm-restflow.git"
+  },
+  "keywords": [
+    "java",
+    "restflow",
+    "nodejs"
+  ],
+  "author": "Alfredo Jorge Monteiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fredybawa/npm-restflow/issues"
+  },
+  "homepage": "https://github.com/fredybawa/npm-restflow#readme"
+}
