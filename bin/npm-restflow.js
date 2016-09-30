@@ -10,13 +10,12 @@ var restFlowCommand = '/usr/bin/java -jar ' + path.resolve(__dirname, '../lib/re
 
 program
   .version('0.0.1')
-   .usage('[options] <DIR>')
+  .usage('[options] <DIR>')
   .option('-c, --config <path>', 'Path to the config folder', handlePathConfiguration)
   .parse(process.argv);
 
 
 function handlePathConfiguration(directory) {
-  console.log(typeof directory);
 
   configPath = appRoot + '/' + directory;
   restFlowCommand +=  ' -config ' + path.resolve(directory) ;
@@ -35,20 +34,22 @@ function handlePathConfiguration(directory) {
       }
   });
 
+
+  child.stdout.on('data', function(data) {
+      console.log('[RESTFLOW] ', data.toString());
+  });
+
+  child.stderr.on('data', function(data) {
+      console.log('[RESTFLOW-ERR]' + data);
+  });
+
+  child.on('close', function(code) {
+      console.log('[CLOSING] RestFlow: ' + code);
+  });
+
 }
 
-
-
-child.stdout.on('data', function(data) {
-    console.log('[RESTFLOW] ', data.toString());
-});
-
-child.stderr.on('data', function(data) {
-    console.log('[RESTFLOW-ERR]' + data);
-});
-child.on('close', function(code) {
-    console.log('[CLOSING] RestFlow: ' + code);
-});
+// java -jar /usr/local/lib/node_modules/npm-restflow/lib/restflow.jar -config /Users/alfredo/Developer/underpinning-sales/src/server/config
 
 
 // http://krasimirtsonev.com/blog/article/Nodejs-managing-child-processes-starting-stopping-exec-spawn
