@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-var exec = require('child_process').exec;
+// var exec = require('child_process').exec;
+var exec = require('child_process').spawn;
 var path = require('path');
 var appRoot = require('app-root-dir').get();
 var program = require('commander');
