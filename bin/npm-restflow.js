@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // var exec = require('child_process').exec;
-var exec = require('child_process').spawn;
+var spawn = require('child_process').spawn;
 var path = require('path');
 var appRoot = require('app-root-dir').get();
 var program = require('commander');
@@ -18,22 +18,25 @@ program
 
 function handlePathConfiguration(directory) {
 
-  configPath = appRoot + '/' + directory;
-  restFlowCommand +=  ' -config ' + path.resolve(directory) ;
+  restFlowCommand +=  ' -config ' + path.resolve(directory);
 
-  console.log('Resolve Path',  path.resolve(directory) );
-  console.log('Path config', configPath);
-  console.log('Final Command', restFlowCommand);
+  // console.log('Resolve Path',  path.resolve(directory) );
+  // console.log('Final Command', restFlowCommand);
 
-  child = exec(restFlowCommand,
-    function (error, stdout, stderr){
-      console.log('stdout: ' + stdout);
-      console.log('stderr: ' + stderr);
+  child = spawn('/usr/bin/java', [
+    '-jar', path.resolve(__dirname, '../lib/restflow.jar'),
+    '-config', path.resolve(directory)
+  ]);
 
-      if(error !== null){
-        console.log('exec error: ' + error);
-      }
-  });
+  // child = exec(restFlowCommand,
+  //   function (error, stdout, stderr){
+  //     console.log('stdout: ' + stdout);
+  //     console.log('stderr: ' + stderr);
+  //
+  //     if(error !== null){
+  //       console.log('exec error: ' + error);
+  //     }
+  // });
 
 
   child.stdout.on('data', function(data) {
